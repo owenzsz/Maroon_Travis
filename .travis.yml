@@ -9,3 +9,6 @@ script:
   - npm run build
 before_install:
   - cd quick_doc
+after_success:
+  - npm install -g firebase-tools
+  - firebase deploy --token 1//047iYDzLSFs_UCgYIARAAGAQSNwF-L9Ir_HtSaajOqoi7jRHdeD8fuRvAYDRHu5J2Fq2yMw7C9nfnEAP24DZWR7isQ5CQ6r8beV4 --non-interactive
