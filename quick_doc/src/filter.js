@@ -144,7 +144,7 @@ const DoctorCards = ({doctors, settingdoctor, pagestate}) => {
         {doctors.map(doctor =>
           (<Grid item xs={6}>
             <Card className={classes.card}>
-              <h1><strong>{doctor.profile.first_name + " " + doctor.profile.last_name}</strong></h1>
+              <h1><strong data-cy="docname">{doctor.profile.first_name + " " + doctor.profile.last_name}</strong></h1>
               <CardMedia><img src={doctor.profile.image_url}></img></CardMedia>
               <CardContent className={classes.content}>Located in {doctor.practices[0].visit_address.city + ", " + doctor.practices[0].visit_address.state}
                 <Button variant="contained" color="primary" size="large" onClick={function(event){settingdoctor.setdoc(doctor);pagestate.setpage(3)}}>View Doctor Bio</Button>
