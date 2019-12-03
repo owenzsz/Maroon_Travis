@@ -1,8 +1,9 @@
 import React from 'react'
-import {render, fireEvent} from 'react-testing-library'
+import {render, fireEvent} from '@testing-library/react'
 import FilterMenu from './filter.js'
 
 test('Filter (page2) successfully renders the doctors info', ()=>{
+    let clickCardio = jest.fn();
     let page = 2;
     let setpage = jest.fn()
     const doctor = {
@@ -28,19 +29,17 @@ test('Filter (page2) successfully renders the doctors info', ()=>{
             "actor": "Cardiologist",
             "actors": "Cardiologists"
         }],
-        "licenses": [{
-            "state": "CA"
-        }, {
-            "number": "G59480",
-            "state": "CA"
-        }],
-        "uid": "039898ea958ba96aca4e2c28494d0b02",
-        "npi": "1912085705"
     };
     const setdoc = jest.fn();
-    const {getByTestId} = render(<FilterMenu pagestate = {{page,setpage}} doctors={doctor} settingdoctor = {{doctor,setdoc}}/>);
+    const {getByTestId} = render(<FilterMenu pagestate = {page,setpage} doctors={doctor} settingdoctor = {doctor,setdoc}/>);
 
+    //test 1: checks for content
     expect(getByTestId("Doctor1").textContent).toBe("Terry Anderson")
+
+    //test 1: checks for interaction
+    fireEvent.click(getByTestId('clickCardio'))
+    expect(doctor).toHaveBeenCalledWith(settingdoctor.doctor)
+    expect(doctor).toHaveBeenCalledTimes(1);
 
 })
 
